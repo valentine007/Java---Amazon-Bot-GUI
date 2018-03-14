@@ -93,16 +93,34 @@ public class StartWindow {
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
+		textField_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String pass = textField_1.getText();
+				textField_1.setText(pass);
+			}
+		});
 		textField_1.setBounds(66, 54, 225, 20);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
+		textField_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String firstName = textField_2.getText();
+				textField_2.setText(firstName);
+			}
+		});
 		textField_2.setBounds(66, 82, 225, 20);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
+		textField_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String lastName = textField_3.getText();
+				textField_3.setText(lastName);
+			}
+		});
 		textField_3.setBounds(66, 104, 225, 20);
 		frame.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
@@ -146,7 +164,18 @@ public class StartWindow {
 				String email = textField.getText();
 				textField.setText(email);
 				
-				Account account = new Account(/*"Valentin.Demac1234@gmail.com"*/email, "126789q123", "Valia", "Demchenkova");
+				String pass = textField_1.getText();
+				textField_1.setText(pass);
+				
+				String firstName = textField_2.getText();
+				textField_2.setText(firstName);
+				
+				String lastName = textField_3.getText();
+				textField_3.setText(lastName);
+				
+				Account account = new Account(/*"Valentin.Demac1234@gmail.com"*/email,
+						/*"126789q123"*/ pass, /*"Valia"*/ firstName,
+						/*"Demchenkova"*/ lastName);
 				driver = BotService.registerAccount(driver, account);
 				
 				if (driver != null) {

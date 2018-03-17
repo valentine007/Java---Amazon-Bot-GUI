@@ -1,3 +1,5 @@
+package service;
+
 
 public class Good {
 	private String asin;							//Артикул товара

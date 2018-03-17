@@ -142,16 +142,34 @@ public class StartWindow {
 		frame.getContentPane().add(lblAsin);
 		
 		textField_4 = new JTextField();
+		textField_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String email = textField_4.getText();
+				textField_4.setText(email);
+			}
+		});
 		textField_4.setBounds(66, 152, 225, 20);
 		frame.getContentPane().add(textField_4);
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
+		textField_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String pass = textField_5.getText();
+				textField_5.setText(pass);
+			}
+		});
 		textField_5.setBounds(66, 177, 225, 20);
 		frame.getContentPane().add(textField_5);
 		textField_5.setColumns(10);
 		
 		textField_6 = new JTextField();
+		textField_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String asin = textField_6.getText();
+				textField_6.setText(asin);
+			}
+		});
 		textField_6.setBounds(66, 205, 225, 20);
 		frame.getContentPane().add(textField_6);
 		textField_6.setColumns(10);
@@ -178,16 +196,37 @@ public class StartWindow {
 						/*"Demchenkova"*/ lastName);
 				driver = BotService.registerAccount(driver, account);
 				
-				if (driver != null) {
-					driver = BotService.addGoodToCart(driver, "");
-					driver.quit();
-					}
 			}
 		});
 		btnCreateAccount.setBounds(301, 57, 123, 39);
 		frame.getContentPane().add(btnCreateAccount);
 		
 		btnAddToCart = new JButton("Add to Cart");
+		btnAddToCart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WebDriver driver = BotService.getFirefoxDriver();
+
+				
+				String email = textField_4.getText();
+				textField_4.setText(email);
+				
+				String pass = textField_5.getText();
+				textField_5.setText(pass);
+				
+				String asin = textField_6.getText();
+				textField_6.setText(asin);		
+				
+				Good good = new Good(asin, "someGood", "someURL");
+				
+				Account account = new Account(email, pass, "someName", "someSecondName");
+				driver = BotService.addGoodToCart(driver, asin, account, good);
+				
+				if (driver != null) {
+					driver = BotService.addGoodToCart(driver, asin, account, good);
+					driver.quit();
+					}
+			}
+		});
 		btnAddToCart.setBounds(301, 168, 123, 39);
 		frame.getContentPane().add(btnAddToCart);
 	}
